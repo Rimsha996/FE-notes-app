@@ -11,7 +11,7 @@ function NotesInput(props){
     }
     return <div>
         <div>
-            <label for="title">Title {title} </label>
+            <label for="title">Title </label>
             <input id="title" type="text" placeholder="Enter Title" value={title} onChange={(event)=> setTitle(event.target.value)} />
         </div>
        <div>
