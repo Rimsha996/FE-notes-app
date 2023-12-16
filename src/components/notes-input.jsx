@@ -20,7 +20,7 @@ function NotesInput(props){
        </div>
 
        <div className='flex justify-center p-4'>
-        <button onClick={()=>AddNotes()} 
+        <button type="button" onClick={()=>AddNotes()} 
             className='flex justify-center border border-blue-700 bg-blue-800 w-2/12 text-white rounded-[3px]'>Save</button>
        </div>
     </div>

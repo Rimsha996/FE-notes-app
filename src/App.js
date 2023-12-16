@@ -3,30 +3,35 @@ import Footer from './components/footer';
 import NotesInput from './components/notes-input';
 import NotesList from './components/notes-list';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 function App() {
   const [notesList, setNoteList] = useState([]);
 
-  
-  // [
-  //   {
-  //     id: '_aaaaa',
-  //     title: 'Note 1',
-  //     details: 'This is my first note',
-  //   },
-  //   {
-  //     id: '_bbbbb',
-  //     title: 'Note 2',
-  //     details: 'This is my second note',
-  //   }
-  // ];
+  useEffect(()=>{
+    setNotes()
+  }, [])
 
-  function AddNote(newNote){
-    // let temp = notesList
-    console.log(notesList)
-    setNoteList([...notesList , newNote])
-    // notesList.push(newNote);
+  function setNotes(){
+    fetch('https://rose-bluefish-garb.cyclic.app/note')
+    .then(response => response.json())
+    .then(data => setNoteList(data.notes))
   }
+  function AddNote(newNote){
+    fetch('https://rose-bluefish-garb.cyclic.app/note', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newNote)
+    }).then(res =>res.json())
+    .then(res=>{
+      console.log(res);
+      if(res)
+        setNotes()
+    });
+    console.log(newNote)
+  };
+
   return (
     <div className="App">
       
